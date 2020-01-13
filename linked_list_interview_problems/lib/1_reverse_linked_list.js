@@ -63,6 +63,35 @@
 function reverseLinkedList(linkedList) {
   // TODO: Implement the reverseLinkedList function!
 
+  let currentHead = linkedList.head // First
+  let previous = currentHead; // First
+  let current = previous.next; // Second
+  let next = current.next; // Third
+  linkedList.tail = currentHead // tail = First
+
+  while (linkedList.head.next !== null) {
+    previous = currentHead; // First
+    current = next; // Second
+    next = current.next; // Third
+    current.next = previous; // First
+    linkedList.head = current; // Second
+    currentHead = linkedList.head; // Second
+  }
+
+
+  // let oldHeadNewTail = linkedList.head;
+  // linkedList.tail = oldHeadNewTail;
+  // let previousNext = oldHeadNewTail.next;
+  // let oldPreviousNextNext = previousNext.next;
+  // previousNext.next = linkedList.tail;
+  // while (oldPreviousNextNext.next) {
+  //   let formerPreviousNext = previousNext
+  //   previousNext= previousNext.next;
+  //   // formerPreviousNext.next = 
+  // }
+  
+  // oldHeadNewTail.next = null;
+
 }
 
 // ----------------------------------------
