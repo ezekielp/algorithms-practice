@@ -26,16 +26,77 @@
 
 class Node {
     // TODO: Implement the Node class!
-
+    constructor(val) {
+        this.value = val;
+        this.next = null;
+    }
 }
 
 class Stack {
     // TODO: Implement the Stack class!
+    constructor() {
+        this.top = null;
+        this.bottom = null;
+        this.length = 0;
+    }
+
+    push(newNode) {
+        if (!this.top) {
+            this.top = newNode;
+            this.bottom = newNode;
+        } else {
+            let temp = this.top;
+            this.top = newNode;
+            this.top.next = temp;
+        }
+
+        this.length++;
+        return this.length;
+    }
+
+    pop() {
+        let temp;
+        if (this.length === 0) return null;
+        if (this.length === 1) {
+            temp = this.top;
+            this.top = null;
+            this.bottom = null;
+        } else {
+            temp = this.top;
+            this.top = temp.next;
+        }
+
+        this.length--;
+        return temp;
+    }
+
+    size() {
+        return this.length;
+    }
 
 }
 
 class StackQueue {
     // TODO: Implement the StackQueue class!
+    constructor() {
+        this.inStack = new Stack;
+        this.outStack = new Stack;
+        this.front = null;
+        this.back = null;
+    }
+
+    enqueue(val) {
+        let newNode = new Node(val);
+
+    }
+
+    dequeue() {
+
+    }
+
+    size() {
+
+    }
 
 };
 

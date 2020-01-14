@@ -77,6 +77,33 @@
 // -----------
 function balancedParens(str) {
 
+    let stack = [];
+
+    for (let i = 0; i < str.length; i++) {
+        let currentParen = str[i];
+        if (stack.length === 0) {
+            if (currentParen === ")") {
+                return false;
+            } else {
+                stack.push(currentParen);
+            }
+        } else {
+            if (stack[stack.length - 1] === "(") {
+                if (currentParen === "(") {
+                    stack.push(currentParen);
+                } else {
+                    stack.pop();
+                }
+            }
+        }
+    }
+
+    if (stack.length === 0) {
+        return true;
+    } else {
+        return false;
+    }
+
 }
 
 exports.balancedParens = balancedParens;
