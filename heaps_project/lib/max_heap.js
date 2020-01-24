@@ -68,13 +68,7 @@ class MaxHeap {
         return previousMax;
     }
 
-
 }
-
-
-// heap = [null, 100, 40, 27, 21, 8, 23, 19]
-
-
 
 module.exports = {
     MaxHeap
