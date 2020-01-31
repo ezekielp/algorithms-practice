@@ -1,3 +1,5 @@
+const GraphNode = require('./graph_node');
+
 function breadthFirstSearch(startingNode, targetVal) {
     
 }
