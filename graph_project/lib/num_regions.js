@@ -17,7 +17,7 @@ function numRegions(graph) {
             //         visitedSets[idx] = depthFirstSearch(node, graph, set);
             //     }
             // })
-        } 
+        }
         // else {
             // let newSet = depthFirstSearch(node, graph);
             // visitedSets.push(newSet);
