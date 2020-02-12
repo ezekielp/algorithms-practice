@@ -7,8 +7,8 @@
  * @return {number[]}
  */
 
-let nums = [5, 7, 7, 8, 8, 10];
-let target = 8;
+let nums = [0, 0, 0, 1, 1, 2, 2, 2, 2, 3, 3, 4, 4, 4, 4, 5, 6];
+let target = 4;
 
 const searchRange = (nums, target) => {
     let midIdx = binarySearch(nums, target);
@@ -23,7 +23,7 @@ const searchRange = (nums, target) => {
         newLeftMost = false;
     }
 
-    while (newLeftMost) {
+    while (newLeftMost !== false) {
         leftSideRange = leftSideRange.slice(0, leftMost);
         newLeftMost = binarySearch(leftSideRange, target);
         if (newLeftMost) {
@@ -40,7 +40,7 @@ const searchRange = (nums, target) => {
         newRightMost = false;
     }
     
-    while (newRightMost) {
+    while (newRightMost !== false) {
         rightSideRange = rightSideRange.slice(rightMost + 1);
         newRightMost = binarySearch(rightSideRange, target, rightMost + 1);
         if (newRightMost) {
@@ -51,7 +51,9 @@ const searchRange = (nums, target) => {
     
     if (leftMost === false) {
         leftMost = midIdx;
-    } else if (rightMost === false) {
+    }
+    
+    if (rightMost === false) {
         rightMost = midIdx;
     }
 
@@ -81,4 +83,4 @@ const binarySearch = (range, target, idxOffset = 0) => {
 
 }
 
-console.log(searchRange([2, 2], 2));
+console.log(searchRange(nums, target));
