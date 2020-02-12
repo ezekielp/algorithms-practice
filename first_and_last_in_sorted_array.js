@@ -12,89 +12,72 @@ let target = 8;
 
 const searchRange = (nums, target) => {
     let midIdx = binarySearch(nums, target);
-    if (midIdx === false) return [-1 ,-1];
+    if (!midIdx) return [-1 ,-1];
 
     let leftSideRange = nums.slice(0, midIdx);
     let leftMost = binarySearch(leftSideRange, target);
+    let newLeftMost;
 
-    while (leftMost !== false) {
+    while (newLeftMost) {
         if (nums[0] === target) {
             leftMost = 0;
             break;
         }
         leftSideRange = leftSideRange.slice(0, leftMost);
-        leftMost = binarySearch(leftSideRange, target);
+        newLeftMost = binarySearch(leftSideRange, target);
+        if (newLeftMost) {
+            leftMost = newLeftMost;
+        }
     }
 
     let rightSideRange = nums.slice(midIdx + 1);
-    let rightMost = binarySearch(rightSideRange, target, midIdx);
+    let rightMost = binarySearch(rightSideRange, target, midIdx + 1);
+    let newRightMost;
 
-    while (rightMost !== false) {
+    while (newRightMost) {
         if (nums[nums.length - 1] === target) {
             rightMost = nums.length - 1;
             break;
         }
         rightSideRange = rightSideRange.slice(rightMost + 1);
-        rightMost = binarySearch(rightSideRange, target, rightMost);
+        newRightMost = binarySearch(rightSideRange, target, rightMost + 1);
+        if (newRightMost) {
+            rightMost = newRightMost;
+        }
     }
 
-
+    if (!leftMost) {
+        leftMost = midIdx;
+    }
     
-    // let currentStartIdx = startNumRange[0];
-    // let currentEndIdx = startNumRange[1];
-    // let currentRange = nums.slice(currentStartIdx, currentEndIdx);
+    if (!rightMost) {
+        rightMost = midIdx
+    }
 
-    // while (!startNumFound && currentRange.length > 0) {
-    //     let numToCheck = currentRange[midIdx];
-    //     if (numToCheck === target) {
-    //         startNumFound = true;
-    //     } else if (numToCheck < target) {
-    //         startNumRange[1] = Math.floor((currentEndIdx - currentStartIdx) / 2);
-    //     } else {
-    //         startNumRange[0] = Math.floor((currentEndIdx - currentStartIdx) / 2);
-    //     }
-    // }
-
+    return [leftMost, rightMost];
+    
     // I think you basically should create a helper function that performs the
     // binary search, and I think you need to run it three times — first to get 
     // the "midIdx", then the startIdx, and finally the endIdx
 
 };
 
-
 const binarySearch = (range, target, idxOffset = 0) => {
     if (range.length === 0) return false;
-    // let numFound = false;
     let pivotIdx = Math.floor(range.length / 2);
     let numToCheck = range[pivotIdx];
     let newRange;
-    // let currentStartIdx = startNumRange[0];
-    // let currentEndIdx = startNumRange[1];
-    // let currentRange = nums.slice(currentStartIdx, currentEndIdx);
 
     if (numToCheck === target) {
         return pivotIdx + idxOffset;
     } else if (target < numToCheck) {
         newRange = range.slice(0, pivotIdx);
-        return binarySearch(newRange, target);
+        return binarySearch(newRange, target, idxOffset);
     } else {
         newRange = range.slice(pivotIdx + 1);
-        return binarySearch(newRange, target, pivotIdx);
+        return binarySearch(newRange, target, idxOffset + pivotIdx + 1);
     }
 
-    // while (!numFound && range.length > 0) {
-
-
-
-
-        // let numToCheck = currentRange[midIdx];
-        // if (numToCheck === target) {
-        //     startNumFound = true;
-        // } else if (numToCheck < target) {
-        //     startNumRange[1] = Math.floor((currentEndIdx - currentStartIdx) / 2);
-        // } else {
-        //     startNumRange[0] = Math.floor((currentEndIdx - currentStartIdx) / 2);
-        // }
-    // }
 }
 
+console.log(searchRange(nums, target));
