@@ -12,46 +12,47 @@ let target = 8;
 
 const searchRange = (nums, target) => {
     let midIdx = binarySearch(nums, target);
-    if (!midIdx) return [-1 ,-1];
+    if (midIdx === false) return [-1 ,-1];
+    console.log(`midIdx: ${midIdx}`);
 
     let leftSideRange = nums.slice(0, midIdx);
     let leftMost = binarySearch(leftSideRange, target);
     let newLeftMost;
+    if (nums[0] === target) {
+        leftMost = 0;
+        newLeftMost = false;
+    }
 
     while (newLeftMost) {
-        if (nums[0] === target) {
-            leftMost = 0;
-            break;
-        }
         leftSideRange = leftSideRange.slice(0, leftMost);
         newLeftMost = binarySearch(leftSideRange, target);
         if (newLeftMost) {
             leftMost = newLeftMost;
         }
     }
-
+    console.log(`leftMost: ${leftMost}`);
+    
     let rightSideRange = nums.slice(midIdx + 1);
     let rightMost = binarySearch(rightSideRange, target, midIdx + 1);
     let newRightMost;
-
+    if (nums[nums.length - 1] === target) {
+        rightMost = nums.length - 1;
+        newRightMost = false;
+    }
+    
     while (newRightMost) {
-        if (nums[nums.length - 1] === target) {
-            rightMost = nums.length - 1;
-            break;
-        }
         rightSideRange = rightSideRange.slice(rightMost + 1);
         newRightMost = binarySearch(rightSideRange, target, rightMost + 1);
         if (newRightMost) {
             rightMost = newRightMost;
         }
     }
-
-    if (!leftMost) {
-        leftMost = midIdx;
-    }
+    console.log(`rightMost: ${rightMost}`);
     
-    if (!rightMost) {
-        rightMost = midIdx
+    if (leftMost === false) {
+        leftMost = midIdx;
+    } else if (rightMost === false) {
+        rightMost = midIdx;
     }
 
     return [leftMost, rightMost];
@@ -80,4 +81,4 @@ const binarySearch = (range, target, idxOffset = 0) => {
 
 }
 
-console.log(searchRange(nums, target));
+console.log(searchRange([2, 2], 2));
