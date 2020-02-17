@@ -17,7 +17,7 @@ const countAndSay = (n) => {
 
     const previous = countAndSay(n - 1);
     const partsOfPrevious = [];
-    const stack = [];
+    let stack = [];
     let currentChar, currentChunk;
 
     for (let i = 0; i < previous.length; i++) {
@@ -27,6 +27,7 @@ const countAndSay = (n) => {
         } else {
             currentChunk = stack.join("");
             partsOfPrevious.push(currentChunk);
+            stack = [currentChar];
         }
     }
     if (stack.length) {
@@ -43,23 +44,9 @@ const countAndSay = (n) => {
     }
 
     return result;
-
-    // let currentChar, currentChunk;
-    // let i = 0;
-    // currentChunk = "";
-
-    // while (i < previous.length) {
-    //     if (currentChunk.length === 0) {
-    //         currentChunk = previous[i];
-    //         i++;
-    //     }
-    //     while (currentChunk[currentChunk.length - 1] === previous[i]) {
-
-    //     }
-    // }
         
 };
 
-
+console.log(countAndSay(5));
 
 
