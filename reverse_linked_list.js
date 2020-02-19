@@ -21,13 +21,14 @@
     current.next = previous; // 2 -> 1 -> NULL
 
     while (next.next !== null) {
-        previous = current; // 2 (-> 3)
-        current = next; // 3 (-> 4)
-        next = current.next; // 4 (-> 5)
-        current.next = previous; 
-
+        previous = current; // 2 // 3
+        current = next; // 3 (-> 4) // 4 (-> 5)
+        next = current.next; // 5 (-> NULL)
+        current.next = previous; // 3 -> 2 -> 1 -> NULL // 4 -> 3 -> 2 -> 1 -> NULL
     }
 
+    next.next = current;
+    return next;
 
 };
 
