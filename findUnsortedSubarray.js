@@ -58,6 +58,22 @@ const example7 = [1, 3, 2, 3, 3]; // 2
 const example8 = [2, 3, 3, 2, 4]; // 3
 const example9 = [1, 2, 4, 5, 3]; // 3
 
+// def find_unsorted_subarray(nums)
+//   l,r= 0, nums.length - 1 // 0, 6
+//   min, max = 10001, -10001
+//   st,nd = 0,-1
+  
+//   while r >=0 do
+//     nums[l] >= max ? max = nums[l] : nd = l // max = 15 // nd = 5
+//     nums[r] <= min ? min = nums[r] : st = r // min = 2 // st = 1
+
+//     l += 1 // 6
+//     r -=1 // 0
+//   end
+  
+//   nd - st + 1
+// end
+
 // console.log(findUnsortedSubarray(example1));
 // console.log(findUnsortedSubarray(example2));
 // console.log(findUnsortedSubarray(example3));
