@@ -20,7 +20,6 @@ var longestPalindrome = function(s) {
     
     while (foundAPalindrome) {
         foundAPalindrome = false;
-        console.log(mainMemo);
         for (let indices in mainMemo) {
             let idxPair = indices.split("#").map(str => parseInt(str));
             let oneIdxBack = idxPair[0] - 1;
