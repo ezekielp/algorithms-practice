@@ -12,14 +12,16 @@ end
 
 def permutations(remaining_subsequences, combos = [])
     if remaining_subsequences.empty?
-        res = combos.reduce { |acc, el| el.length < acc.length ? el : acc }
-        @res = res.length if res.length < @res
+        res = combos.reduce { |acc, el| el.length < acc.length ? el : acc }.length
+        @res = res if res < @res
         return
     end
 
     if combos.empty?
         if remaining_subsequences.length == 1
-            return remaining_subsequences[0].length
+            res = remaining_subsequences[0].length
+            @res = res if res < @res
+            return
         end
 
         i = 0
@@ -48,7 +50,7 @@ def permutations(remaining_subsequences, combos = [])
 end
 
 def helper(s1, s2)
-    return [new_combos] if s1 == s2
+    return [s1] if s1 == s2
 
     res = []
     forward, reverse = false
@@ -90,8 +92,12 @@ def helper(s1, s2)
         end
     end
 
-    return res
+    res
 end
+
+
+# Write an answer using puts
+# To debug: STDERR.puts "Debug messages..."
 
 permutations(@subsequences)
 
