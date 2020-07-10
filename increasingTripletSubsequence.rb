@@ -1,5 +1,72 @@
 # @param {Integer[]} nums
 # @return {Boolean}
+
+def increasing_triplet(nums)
+
+    lo = nil # 1
+    mid = nil # 2
+    
+    nums.each do |n|
+        if !lo # lo is nil, so set it to the first n
+            lo = n
+        else # lo is not nil
+            if !mid # mid is nil, so check what to do with n
+                if n > lo
+                    mid = n
+                else
+                    lo = n
+                end
+            else # lo and mid have values
+                if n > mid # you've found three in a row — return true
+                    return true
+                else # n is less than or equal to mid
+                    if n < lo # if n is less than lo
+                        lo = n
+                    elsif n > lo # if n is actually greater than lo — not just equal
+                        mid = n
+                    end
+                end
+            end
+        end
+    end
+    
+    false
+    
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 def increasing_triplet(nums)
 
     lo = 0
