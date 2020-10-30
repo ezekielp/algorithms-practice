@@ -3,6 +3,7 @@ require 'set'
 def last_stone_weight_ii(stones) # [2,7,4,1,8,1]
     dp = Set.new([0]) # { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23 }
     # { 23, 21, 19, 17, 15, 13, 11, 9, 7, 5, 3, 1, 1, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23 }
+    # [T, F, T, F, F, F, T, T, T, F, T, F]
     sum_of_array = stones.reduce(:+) # 23
     stones.each do |stone|
         new_dp = Set.new([]) # {  }
